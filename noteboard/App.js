@@ -8,9 +8,10 @@
 
 import React from 'react';
 import type { Node } from 'react';
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button} from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const styles = StyleSheet.create({
   container: {
@@ -24,6 +25,26 @@ const styles = StyleSheet.create({
     fontWeight: '800'
   }
 });
+
+const storeNote = async(note) => {
+  try {
+    await AsyncStorage.setItem('@storage_Key', note) //stores only string, objects need to be serialized
+  } catch (e) {
+    // ERROR!
+  }
+}
+
+const getNote = async() => {
+  try {
+    const note = await AsyncStorage.getItem('@storage_key')
+    if(value !== null) {
+      return value;
+    }
+  } catch(e) {
+    // ERROR!
+  }
+
+}
 
 function Board() {
   return (
@@ -58,7 +79,7 @@ function NoteList() {
 
 const Tab = createBottomTabNavigator();
 
-function BottomTabs() {
+function Screens() {
   return(
     <Tab.Navigator initialRouteName="Board" screenOptions={{
         tabBarActiveTintColor: "#4d342a",
@@ -74,7 +95,7 @@ function BottomTabs() {
 function App() {
   return(
     <NavigationContainer>
-      <BottomTabs />
+      <Screens />
     </NavigationContainer>
   );
 };
