@@ -7,106 +7,60 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import type { Node } from 'react';
+import { Text, View, Button} from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
+function Board() {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#ebc69d" }}>
+      <Text style={{ fontSize:20, color: "#ffffff", fontWeight: '800'}}>
+        Noteboard will be here!!
       </Text>
     </View>
   );
-};
+}
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+function NewNote() {
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#faeaaa" }}>
+      <Text style={{ fontSize:20, color: "#ffffff", fontWeight: '800'}}>
+        Note creation will be here!!
+      </Text>
+    </View>
+  );
+}
+
+function NoteList() {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#997e6b" }}>
+      <Text style={{ fontSize:20, color: "#ffffff", fontWeight: '800'}}>
+        Note list will be here!!
+      </Text>
+    </View>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+
+function BottomTabs() {
+  return(
+    <Tab.Navigator initialRouteName="Board" screenOptions={{
+        tabBarActiveTintColor: "#4d342a",
+        tabBarLabelStyle: { fontSize:14 }}}>
+      <Tab.Screen name="Board" component={Board} />
+      <Tab.Screen name="New Note" component={NewNote} />
+      <Tab.Screen name="Note List" component={NoteList} />
+    </Tab.Navigator>
+  );
+}
+
+export default function App() {
+  return(
+    <NavigationContainer>
+      <BottomTabs />
+    </NavigationContainer>
   );
 };
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
