@@ -8,14 +8,27 @@
 
 import React from 'react';
 import type { Node } from 'react';
-import { Text, View, Button} from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, 
+    justifyContent: "center", 
+    alignItems: "center"
+  },
+  mainText: {
+    fontSize:20,
+    color: "#ffffff",
+    fontWeight: '800'
+  }
+});
+
 function Board() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#ebc69d" }}>
-      <Text style={{ fontSize:20, color: "#ffffff", fontWeight: '800'}}>
+    <View style={[styles.container, { backgroundColor: "#8cab90" }]}>
+      <Text style={styles.mainText}>
         Noteboard will be here!!
       </Text>
     </View>
@@ -24,18 +37,19 @@ function Board() {
 
 function NewNote() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#faeaaa" }}>
-      <Text style={{ fontSize:20, color: "#ffffff", fontWeight: '800'}}>
-        Note creation will be here!!
-      </Text>
+    <View style={[styles.container, { backgroundColor: "#bfb67c" }]}>
+      <View style={{flex: 1, flexDirection:'row', justifyContent: 'space-between', alignItems: "center", width: "60%"}}>
+        <TextInput style={styles.mainText} placeholder="Type new note here " maxLength={18}/>
+        <Button title="Save" color="#997e6b"/>
+      </View>
     </View>
   );
 }
 
 function NoteList() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#997e6b" }}>
-      <Text style={{ fontSize:20, color: "#ffffff", fontWeight: '800'}}>
+    <View style={[styles.container, { backgroundColor: "#997e6b" }]}>
+      <Text style={styles.mainText}>
         Note list will be here!!
       </Text>
     </View>
@@ -48,7 +62,8 @@ function BottomTabs() {
   return(
     <Tab.Navigator initialRouteName="Board" screenOptions={{
         tabBarActiveTintColor: "#4d342a",
-        tabBarLabelStyle: { fontSize:14 }}}>
+        tabBarLabelStyle: { fontSize:14 },
+        fontSize: 50}}>
       <Tab.Screen name="Board" component={Board} />
       <Tab.Screen name="New Note" component={NewNote} />
       <Tab.Screen name="Note List" component={NoteList} />
@@ -56,7 +71,7 @@ function BottomTabs() {
   );
 }
 
-export default function App() {
+function App() {
   return(
     <NavigationContainer>
       <BottomTabs />
@@ -64,3 +79,4 @@ export default function App() {
   );
 };
 
+export default App;
