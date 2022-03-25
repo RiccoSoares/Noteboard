@@ -6,13 +6,15 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import type { Node } from 'react';
-import { StyleSheet, Text, TextInput, View, Button} from 'react-native';
+import { SafeAreaView, FlatList, StyleSheet, Text, TextInput, View, Button} from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+
+//Stylesheets
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
@@ -26,27 +28,50 @@ const styles = StyleSheet.create({
   }
 });
 
-const storeNote = async(note) => {
+
+//Persistent note storage functions
+async function getNoteCount() {
   try {
-    await AsyncStorage.setItem('@storage_Key', note) //stores only string, objects need to be serialized
-  } catch (e) {
-    // ERROR!
+    const count = await AsyncStorage.getItem("@note-count");
+    return parseInt(count);
+  } catch (error) {
+    console.warn(error);
   }
 }
 
-const getNote = async() => {
-  try {
-    const note = await AsyncStorage.getItem('@storage_key')
-    if(value !== null) {
-      return value;
-    }
-  } catch(e) {
-    // ERROR!
+async function StoreNewNote(note) {
+  try{
+    const count = await getNoteCount();
+    await AsyncStorage.setItem("@note-count", JSON.stringify(count + 1));
+    await AsyncStorage.setItem("@note-" + id, note);
+  } catch (error) {
+    console.warn(error);
   }
-
 }
 
+async function getNote() {
+  try{
+    const note = await AsyncStorage.getItem("@note-" + id);
+    return note;
+  } catch (error) {
+    console.warn(error);
+  }
+}
+
+async function getAllNotes() {
+  try{
+    const ids = await AsyncStorage.getAllKeys()
+    const notes = await AsyncStorage.multiGet(keys)
+    return notes
+  } catch (error) {
+    console.warn(error);
+  }
+}
+
+
+//Functional components (screen functions)
 function Board() {
+  //AsyncStorage.clear()
   return (
     <View style={[styles.container, { backgroundColor: "#8cab90" }]}>
       <Text style={styles.mainText}>
@@ -57,26 +82,31 @@ function Board() {
 }
 
 function NewNote() {
+  const [text, setText] = useState('')
   return (
     <View style={[styles.container, { backgroundColor: "#bfb67c" }]}>
       <View style={{flex: 1, flexDirection:'row', justifyContent: 'space-between', alignItems: "center", width: "60%"}}>
-        <TextInput style={styles.mainText} placeholder="Type new note here " maxLength={18}/>
-        <Button title="Save" color="#997e6b"/>
+        <TextInput onChangeText={note => setText(note)} style={styles.mainText} placeholder="Type new note here " maxLength={18}/>
+        <Button onPress={() => StoreNewNote(text)} title="Save" color="#997e6b"/>
       </View>
     </View>
   );
 }
 
 function NoteList() {
+  const [text, setText] = useState('')
+  getNote(1).then(note => {setText(note)})
   return (
     <View style={[styles.container, { backgroundColor: "#997e6b" }]}>
       <Text style={styles.mainText}>
-        Note list will be here!!
+        {text}
       </Text>
     </View>
   );
 }
 
+
+//Screens and app drawing
 const Tab = createBottomTabNavigator();
 
 function Screens() {
