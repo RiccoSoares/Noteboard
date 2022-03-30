@@ -18,12 +18,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1, 
     justifyContent: "center", 
-    alignItems: "center"
+    alignItems: "center",
   },
   mainText: {
     fontSize:20,
     color: "#ffffff",
     fontWeight: '800'
+  },
+  noteListText: {
+    fontSize:30,
+    color: "#ffffff",
+    fontWeight: '800',
+    padding:10,
   }
 });
 
@@ -32,7 +38,10 @@ const styles = StyleSheet.create({
 async function getNoteCount() {
   try {
     const count = await AsyncStorage.getItem("@note-count");
-    return parseInt(count);
+    if (isNaN(count))
+      return 0;
+    else 
+      return parseInt(count);
   } catch (error) {
     console.warn(error);
   }
@@ -42,7 +51,7 @@ async function StoreNewNote(note) {
   try{
     const count = await getNoteCount();
     await AsyncStorage.setItem("@note-count", JSON.stringify(count + 1));
-    await AsyncStorage.setItem("@note-" + id, note);
+    await AsyncStorage.setItem("@note-" + (count + 1), note);
   } catch (error) {
     console.warn(error);
   }
@@ -73,7 +82,6 @@ async function getAllNotes() {
 
 //Functional components (screen functions)
 function Board() {
-  //AsyncStorage.clear()
   return (
     <View style={[styles.container, { backgroundColor: "#8cab90" }]}>
       <Text style={styles.mainText}>
@@ -98,13 +106,14 @@ function NewNote() {
 function NoteList() {
   const [text, setText] = useState('')
   const [notes, setNotes] = useState([])
-  //getNote(1).then(note => {setText(note)})
   getAllNotes().then(notes => {setNotes(notes)})
   return (
     <View style={[styles.container, { backgroundColor: "#997e6b" }]}>
-      <Text style={styles.mainText}>
-        {notes[0]}
-      </Text>
+      <FlatList
+        style={{flex:1, maxWidth:700, width: "100%"}}
+        contentContainerStyle={{alignItems:'center'}}
+        data={notes}
+        renderItem={({item}) => {return <Text style={styles.noteListText}>{item}</Text>}}/>
     </View>
   );
 }
