@@ -13,7 +13,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-
 //Stylesheets
 const styles = StyleSheet.create({
   container: {
@@ -60,14 +59,17 @@ async function getNote() {
 
 async function getAllNotes() {
   try{
+    const notes = []
+
     const ids = await AsyncStorage.getAllKeys()
-    const notes = await AsyncStorage.multiGet(keys)
+    const data = await AsyncStorage.multiGet(ids)
+    data.forEach(pair => notes.push(pair[1]))
+
     return notes
   } catch (error) {
     console.warn(error);
   }
 }
-
 
 //Functional components (screen functions)
 function Board() {
@@ -95,11 +97,13 @@ function NewNote() {
 
 function NoteList() {
   const [text, setText] = useState('')
-  getNote(1).then(note => {setText(note)})
+  const [notes, setNotes] = useState([])
+  //getNote(1).then(note => {setText(note)})
+  getAllNotes().then(notes => {setNotes(notes)})
   return (
     <View style={[styles.container, { backgroundColor: "#997e6b" }]}>
       <Text style={styles.mainText}>
-        {text}
+        {notes[0]}
       </Text>
     </View>
   );
