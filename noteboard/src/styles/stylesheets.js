@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   noteText: {
     fontSize:30,
-    color: COLORS.darkBrown,
+    color: COLORS.darkDarkBrown,
     fontWeight: '900',
     padding:10,
   }

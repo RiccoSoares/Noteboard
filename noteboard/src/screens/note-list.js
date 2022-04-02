@@ -12,11 +12,11 @@ export function NoteList() {
   const [notes, setNotes] = useState([])
   getAllNotes().then(notes => {setNotes(notes)})
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: '#bfac97' }]}>
+    <SafeAreaView style={[styles.container, { backgroundColor: COLORS.brown}]}>
       <FocusAwareStatusBar/>
       <FlatList
         style={{flex:1, maxWidth:700, width: '100%'}}
-        contentContainerStyle={{alignItems:'center'}}
+        contentContainerStyle={{alignItems:'flex-start', margin:20}}
         data={notes}
         renderItem={({item}) => {return <Text style={styles.noteText}>{item}</Text>}}/>
     </SafeAreaView>
