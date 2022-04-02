@@ -28,7 +28,7 @@ function Screens() {
         headerTitle: 'noteboard',
         headerTintColor: COLORS.darkBrown,
         headerTitleAlign: 'center',
-        headerStyle: {height: 40, backgroundColor: COLORS.beige, shadowColor: 'black'},
+        headerStyle: {height: 40, backgroundColor: COLORS.beige, shadowColor: 'black', elevation:5},
         tabBarActiveTintColor: COLORS.darkBrown,
         tabBarLabelStyle: { fontSize:14, flex:1, alignItems: 'center'},
         tabBarIconStyle: { margin: 5},

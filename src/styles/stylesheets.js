@@ -12,5 +12,11 @@ export const styles = StyleSheet.create({
     color: COLORS.darkDarkBrown,
     fontWeight: '900',
     padding:10,
+  },
+  note: {
+    backgroundColor: COLORS.yellow,
+    width: 70,
+    height:65,
+    elevation:7
   }
 });
