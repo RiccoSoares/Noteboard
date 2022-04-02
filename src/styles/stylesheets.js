@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   noteText: {
-    fontSize:30,
+    fontSize:25,
     color: COLORS.darkDarkBrown,
     fontWeight: '900',
     padding:10,

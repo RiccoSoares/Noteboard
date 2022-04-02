@@ -4,7 +4,7 @@ import {SafeAreaView, View, TextInput, Button} from 'react-native';
 import {COLORS} from '../styles/colors.js';
 import {styles} from '../styles/stylesheets';
 import {FocusAwareStatusBar} from '../components/status-bar';
-import StoreNewNote from '../database/operations';
+import {StoreNewNote} from '../database/operations';
 
 export function NewNote() {
   const [text, setText] = useState('')
