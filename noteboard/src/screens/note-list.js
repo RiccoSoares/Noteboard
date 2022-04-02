@@ -1,6 +1,6 @@
 
 import React, {useState} from 'react';
-import {SafeAreaView, FlatList} from 'react-native';
+import {SafeAreaView, FlatList, Text} from 'react-native';
 
 import {COLORS} from '../styles/colors';
 import {styles} from '../styles/stylesheets';
