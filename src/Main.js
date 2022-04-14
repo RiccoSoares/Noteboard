@@ -25,7 +25,7 @@ const Tab = createBottomTabNavigator();
 function Screens() {
   return(
     <Tab.Navigator initialRouteName='Board' backBehavior='none' screenOptions={({route}) => ({
-        headerTitle: 'noteboard',
+        headerTitle: 'noteboard.',
         headerTintColor: COLORS.darkBrown,
         headerTitleAlign: 'center',
         headerStyle: {height: 40, backgroundColor: COLORS.beige, shadowColor: 'black', elevation:5},
