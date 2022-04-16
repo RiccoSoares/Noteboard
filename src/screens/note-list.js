@@ -6,6 +6,7 @@ import {COLORS} from '../styles/colors';
 import {styles} from '../styles/stylesheets';
 import {FocusAwareStatusBar} from '../components/status-bar';
 import {getAllNotes} from '../database/operations';
+import {Note} from '../Note';
 
 export function NoteList() {
   const [text, setText] = useState('')
@@ -18,7 +19,9 @@ export function NoteList() {
         style={{flex:1, maxWidth:700, width: '100%'}}
         contentContainerStyle={{alignItems:'flex-start', margin:20, paddingBottom:100}}
         data={notes}
-        renderItem={({item}) => {return <Text style={styles.noteText}>{item}</Text>}}/>
+        renderItem={({item}) => {return <Text style={styles.noteText}>
+          {'title:' + item.title + ' body:' + item.bodyText + ' color:' + item.color}
+          </Text>}}/>
     </SafeAreaView>
   );
 }

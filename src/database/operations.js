@@ -14,10 +14,10 @@ async function getNoteCount() {
   }
 }
 
-async function getNote() {
+async function getNote(id) {
   try{
     const note = await AsyncStorage.getItem('@note-' + id);
-    return note;
+    return JSON.parse(note);
   } catch (error) {
     console.warn(error);
   }
@@ -27,7 +27,7 @@ export async function StoreNewNote(note) {
   try{
     const count = await getNoteCount();
     await AsyncStorage.setItem('@note-count', JSON.stringify(count + 1));
-    await AsyncStorage.setItem('@note-' + (count + 1), note);
+    await AsyncStorage.setItem('@note-' + (count + 1), JSON.stringify(note));
   } catch (error) {
     console.warn(error);
   }
@@ -39,7 +39,7 @@ export async function getAllNotes() {
 
     const ids = await AsyncStorage.getAllKeys()
     const data = await AsyncStorage.multiGet(ids)
-    data.forEach(pair => notes.push(pair[1]))
+    data.forEach(pair => {if(pair[0] !== '@note-count')notes.push(JSON.parse(pair[1]))})
 
     return notes
   } catch (error) {
