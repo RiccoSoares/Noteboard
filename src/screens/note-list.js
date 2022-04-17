@@ -24,10 +24,17 @@ export function NoteList() {
         <Text style={styles.noteText}>
           {item.title + ' - ' + item.bodyText.substring(0,6)}
         </Text>
+
           <Button 
           onPress={() => {}} 
-          title='Add' 
+          title='Edit' 
           color='#876759'/>
+
+          <Button 
+          onPress={() => {}} 
+          title='Board' 
+          color='#876759'/>
+
           </View>}
         }/>
     </SafeAreaView>
