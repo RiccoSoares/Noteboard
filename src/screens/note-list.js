@@ -13,15 +13,15 @@ export function NoteList() {
   const [notes, setNotes] = useState([])
   getAllNotes().then(notes => {setNotes(notes)})
   return (
-    <SafeAreaView style={[styles.container, {backgroundColor: COLORS.brown}]}>
+    <SafeAreaView style={[styles.container, {backgroundColor: COLORS.blue}]}>
       <FocusAwareStatusBar/>
       <FlatList
-        style={{flex:1, maxWidth:700, width: '100%', marginVertical:10}}
+        style={{flex:1, maxWidth:700, width: '100%', marginVertical:6}}
         contentContainerStyle={{paddingBottom:100}}
         data={notes.sort((a,b) => a.title > b.title)}
         //for debug: {'title:' + item.title + ' body:' + item.bodyText + ' color:' + item.color}
         renderItem={({item}) => {return (
-        <View style={{flexDirection: 'row', justifyContent:'space-between', margin:10, backgroundColor:COLORS.beige, borderRadius:15}}>
+        <View style={{flexDirection: 'row', justifyContent:'space-between', margin:6, backgroundColor:COLORS.brown, borderRadius:15}}>
           <Text style={[styles.noteText, {height:50}]}>
             {item.title + ' - ' + item.bodyText.substring(0,6)}
           </Text>
