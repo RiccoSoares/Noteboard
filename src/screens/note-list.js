@@ -13,7 +13,7 @@ export function NoteList() {
   const [notes, setNotes] = useState([])
   getAllNotes().then(notes => {setNotes(notes)})
   return (
-    <SafeAreaView style={[styles.container, {backgroundColor: COLORS.blue}]}>
+    <SafeAreaView style={[styles.container, {backgroundColor: COLORS.darkYellow}]}>
       <FocusAwareStatusBar/>
       <FlatList
         style={{flex:1, maxWidth:700, width: '100%', marginVertical:6}}
@@ -22,8 +22,8 @@ export function NoteList() {
         //for debug: {'title:' + item.title + ' body:' + item.bodyText + ' color:' + item.color}
         renderItem={({item}) => {return (
         <View style={{flexDirection: 'row', justifyContent:'space-between', margin:6, backgroundColor:COLORS.brown, borderRadius:15}}>
-          <Text style={[styles.noteText, {height:50}]}>
-            {item.title + ' - ' + item.bodyText.substring(0,6)}
+          <Text numberOfLines={1} style={[styles.noteText, {height:50, width:270}]}>
+            {item.title + ' - ' + item.bodyText }
           </Text>
           <View style={{flex:1, maxWidth:115, marginHorizontal:10, alignSelf:'center', flexDirection:'row', justifyContent:'space-between'}}>
             <Button style={{}} onPress={() => {}} title='Edit'  color='#876759'/>

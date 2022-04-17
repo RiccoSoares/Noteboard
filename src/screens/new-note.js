@@ -21,20 +21,24 @@ function SaveButton({onPress}) {
 }
 
 export function NewNote() {
+  const [title, setTitle] = useState('')
   const [text, setText] = useState('')
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: COLORS.yellow, justifyContent:'flex-start', alignItems:'flex-start'}]}>
       <FocusAwareStatusBar/>
       <TextInput 
-        onChangeText={note => setText(note)} 
-        value={text} style={styles.noteTitle} 
+        onChangeText={value => setTitle(value)} 
+        value={title} style={styles.noteTitle} 
         placeholder='Title ' placeholderTextColor='#c9d1a1'/>
-      <TextInput style={styles.noteBody} placeholder='Text ' 
-        placeholderTextColor='#c9d1a1' multiline={true} textAlignVertical='top' numberOfLines={10}/>
+      <TextInput 
+        onChangeText={value => setText(value)} 
+        value={text}  style={styles.noteBody} 
+        placeholder='Text ' placeholderTextColor='#c9d1a1' 
+        multiline={true} textAlignVertical='top' numberOfLines={10}/>
       <SaveButton 
         onPress={() => {
-          let createdNote = new Note(text, 'body-example', 'color-example');
-          StoreNewNote(createdNote); setText('')}}/>
+          let createdNote = new Note(title, text, 'color-example');
+          StoreNewNote(createdNote); setTitle(''); setText('')}}/>
     </SafeAreaView>
   );
 }
