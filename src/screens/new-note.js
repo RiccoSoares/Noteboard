@@ -21,7 +21,7 @@ export function NewNote() {
           autoCorrect={false}/>
         <Button 
           onPress={() => {
-            let createdNote = new Note(text, 'body-example', 'color-example');
+            let createdNote = new Note(text, 'bodyexample', 'color-example');
             StoreNewNote(createdNote); setText('')}} 
           title='Save' 
           color='#876759'/>
