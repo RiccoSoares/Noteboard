@@ -20,10 +20,10 @@ export function NoteList() {
         contentContainerStyle={{alignItems:'flex-start', margin:20, paddingBottom:100}}
         data={notes.sort((a,b) => a.title > b.title)}
         //for debug: {'title:' + item.title + ' body:' + item.bodyText + ' color:' + item.color}
-        renderItem={({item}) => {return <View>
+        renderItem={({item}) => {return <View style={{flexDirection: 'row'}}>
         <Text style={styles.noteText}>
           {item.title + ' - ' + item.bodyText.substring(0,6)}
-          </Text>
+        </Text>
           <Button 
           onPress={() => {}} 
           title='Add' 
