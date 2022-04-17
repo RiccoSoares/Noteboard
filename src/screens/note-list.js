@@ -18,7 +18,7 @@ export function NoteList() {
       <FlatList
         style={{flex:1, maxWidth:700, width: '100%'}}
         contentContainerStyle={{alignItems:'flex-start', margin:20, paddingBottom:100}}
-        data={notes}
+        data={notes.sort((a,b)=> a.title > b.title)}
         renderItem={({item}) => {return <Text style={styles.noteText}>
           {'title:' + item.title + ' body:' + item.bodyText + ' color:' + item.color}
           </Text>}}/>
