@@ -11,7 +11,7 @@ import {Note} from '../Note';
 export function NoteList() {
   const [text, setText] = useState('')
   const [notes, setNotes] = useState([])
-  getAllNotes().then(notes => {setNotes(notes)})//.concat(["",""]))})
+  getAllNotes().then(notes => {setNotes(notes)})
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: COLORS.brown}]}>
       <FocusAwareStatusBar/>
