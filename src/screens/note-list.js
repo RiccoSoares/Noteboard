@@ -1,6 +1,6 @@
 
 import React, {useState} from 'react';
-import {SafeAreaView, FlatList, Text, View, Button} from 'react-native';
+import {SafeAreaView, FlatList, Text, View, Button, TouchableOpacity} from 'react-native';
 
 import {COLORS} from '../styles/colors';
 import {styles} from '../styles/stylesheets';
@@ -21,6 +21,12 @@ export function NoteList() {
         data={notes.sort((a,b) => a.title > b.title)}
         //for debug: {'title:' + item.title + ' body:' + item.bodyText + ' color:' + item.color}
         renderItem={({item}) => {return (
+          <TouchableOpacity
+          style={[styles.modelView]}
+          onLongPress={() => {
+            underlayColor = "white"
+          }}
+          >
         <View style={{flexDirection: 'row', justifyContent:'space-between', margin:6, backgroundColor:COLORS.brown, borderRadius:15}}>
           <Text numberOfLines={1} style={[styles.noteText, {height:50, width:270}]}>
             {item.title + ' - ' + item.bodyText }
@@ -30,6 +36,7 @@ export function NoteList() {
             <Button style={{}} onPress={() => {}} title='Delete' color='#876759'/>
           </View>
         </View>
+        </TouchableOpacity>
         )}}/>
     </SafeAreaView>
   );
