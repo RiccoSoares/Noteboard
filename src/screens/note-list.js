@@ -26,8 +26,8 @@ export function NoteList() {
             {item.title + ' - ' + item.bodyText }
           </Text>
           <View style={{flex:1, maxWidth:115, marginHorizontal:10, alignSelf:'center', flexDirection:'row', justifyContent:'space-between'}}>
-            <Button style={{}} onPress={() => {}} title='Edit'  color='#876759'/>
-            <Button style={{}} onPress={() => {}} title='Board' color='#876759'/>
+            <Button style={{}} onPress={() => {}} title='Add'  color='#876759'/>
+            <Button style={{}} onPress={() => {}} title='Delete' color='#876759'/>
           </View>
         </View>
         )}}/>
