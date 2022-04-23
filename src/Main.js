@@ -16,7 +16,7 @@ import {COLORS} from './styles/colors';
 import {styles} from './styles/stylesheets';
 
 import {Board} from './screens/board'
-import {NewNote} from './screens/new-note'
+import {EditNote} from './screens/edit-note'
 import {NoteList} from './screens/note-list'
 
 //Screens and app drawing
@@ -47,7 +47,7 @@ function Screens() {
 
           if (route.name == 'Board')
             iconName = focused ? 'easel' : 'easel-outline'
-          else if (route.name == 'New Note') 
+          else if (route.name == 'Edit Note') 
             iconName = focused ? 'document-text' : 'document-text-outline'
           else if (route.name == 'Note List') 
             iconName = focused ? 'file-tray' : 'file-tray-outline'
@@ -56,7 +56,7 @@ function Screens() {
         }
         })}>
       <Tab.Screen name='Board' component={Board}/>
-      <Tab.Screen name='New Note' component={NewNote} />
+      <Tab.Screen name='Edit Note' component={EditNote} />
       <Tab.Screen name='Note List' component={NoteList} />
     </Tab.Navigator>
   );
