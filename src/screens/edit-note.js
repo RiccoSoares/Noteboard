@@ -20,9 +20,9 @@ function SaveButton({onPress}) {
   );
 }
 
-export function EditNote(Note) {
-  const [title, setTitle] = useState(Note.title)
-  const [text, setText] = useState(Note.bodyText)
+export function EditNote(note) {
+  const [title, setTitle] = useState(note.title)
+  const [text, setText] = useState(note.bodyText)
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: COLORS.yellow, justifyContent:'flex-start', alignItems:'flex-start'}]}>
       <FocusAwareStatusBar/>
