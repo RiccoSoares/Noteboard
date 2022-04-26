@@ -3,6 +3,7 @@ import {Animated, Text, PanResponder} from 'react-native';
 
 import {styles} from '../styles/stylesheets';
 import {COLORS} from '../styles/colors';
+import {Note} from '../Note';
 
 export class NoteComponent extends Component {
     constructor(props) {
@@ -32,9 +33,8 @@ export class NoteComponent extends Component {
     render() {
         return (
             <Animated.View style={[styles.note, this.state.position.getLayout()]} {...this.state.panResponder.panHandlers}>
-                <Text style={{color:COLORS.darkBrown, fontWeight:'400', margin:5}}>Text</Text>
+                <Text style={{color:COLORS.darkBrown, fontWeight:'400', margin:5}}>{this.props.note.title}</Text>
             </Animated.View>
         );
     }
-    
 }
