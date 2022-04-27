@@ -6,9 +6,10 @@ import {COLORS} from '../styles/colors';
 import {styles} from '../styles/stylesheets';
 import {FocusAwareStatusBar} from '../components/status-bar';
 import {getAllNotes} from '../database/operations';
-import {Note} from '../Note';
+import {NavigationContainer} from '@react-navigation/native';
+import {creatNativeStackNavigator} from '@react-navigation/native-stack';
 
-export function NoteList() {
+export function NoteList({navigation}) {
   const [text, setText] = useState('')
   const [notes, setNotes] = useState([])
   getAllNotes().then(notes => {setNotes(notes)})
@@ -24,7 +25,9 @@ export function NoteList() {
           <TouchableOpacity
           style={[styles.modelView]}
           onLongPress={() => {
-            underlayColor = "white"
+            navigation.navigate('Edit Note', {
+              note: item
+            });
           }}
           >
         <View style={{flexDirection: 'row', justifyContent:'space-between', margin:6, backgroundColor:COLORS.brown, borderRadius:15}}>

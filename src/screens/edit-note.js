@@ -20,9 +20,12 @@ function SaveButton({onPress}) {
   );
 }
 
-export function EditNote(note) {
+export function EditNote({route, navigation}) {
+  const {note} = route.params;
   const [title, setTitle] = useState(note.title)
   const [text, setText] = useState(note.bodyText)
+  console.log(note.title);
+  console.log(note.bodyText);
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: COLORS.yellow, justifyContent:'flex-start', alignItems:'flex-start'}]}>
       <FocusAwareStatusBar/>
