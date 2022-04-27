@@ -11,7 +11,7 @@ import {NoteComponent} from '../components/note-component';
 export function Board() {
   
   const [note, setNote] = useState([]);
-  getLastNote().then(retrievedNote => {setNote(retrievedNote)});
+  //getLastNote().then(retrievedNote => {setNote(retrievedNote)});
 
   return (
     <SafeAreaView style={[styles.container, {backgroundColor:COLORS.green}]}>

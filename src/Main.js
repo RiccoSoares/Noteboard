@@ -57,7 +57,7 @@ function Screens() {
         }
         })}>
       <Tab.Screen name='Board' component={Board}/>
-      <Tab.Screen name='Edit Note' component={EditNote} initialParams={{note: new Note('','','')}}/>
+      <Tab.Screen name='Edit Note' component={EditNote} initialParams={{note: new Note('','','')}} options={{unmountOnBlur: true}}/>
       <Tab.Screen name='Note List' component={NoteList} />
     </Tab.Navigator>
   );

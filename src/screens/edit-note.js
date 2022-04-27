@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {SafeAreaView, View, TextInput, Button, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -20,22 +20,33 @@ function SaveButton({onPress}) {
 }
 
 export function EditNote({route, navigation}) {
+  const whenExited = navigation.addListener('blur', () => {
+    navigation.setParams({note: new Note('','','')});
+  });
+  
   const {note} = route.params;
-  console.log(note.title);
-  console.log(note.bodyText);
+  const [title, setTitle] = useState(note.title);
+  const [text, setText] = useState(note.bodyText);
+
+
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: COLORS.yellow, justifyContent:'flex-start', alignItems:'flex-start'}]}>
       <FocusAwareStatusBar/>
       <TextInput 
-        value={note.title} style={styles.noteTitle} 
+        onChangeText={value => setTitle(value)}
+        value={title} style={styles.noteTitle} 
         placeholder='Title ' placeholderTextColor='#c9d1a1'/>
       <TextInput 
-        value={note.bodyText}  style={styles.noteBody} 
+        onChangeText={value => setText(value)}
+        value={text}  style={styles.noteBody} 
         placeholder='Text ' placeholderTextColor='#c9d1a1' 
         multiline={true} textAlignVertical='top' numberOfLines={10}/>
       <SaveButton 
         onPress={() => {
-          StoreNewNote(note);}}/>
+          note.title = title;
+          note.bodyText = text;
+          StoreNewNote(note);
+        }}/>
     </SafeAreaView>
   );
 }

@@ -46,7 +46,6 @@ export async function StoreNewNote(note) {
 export async function getAllNotes() {
   try{
     const notes = []
-
     const ids = await AsyncStorage.getAllKeys()
     const data = await AsyncStorage.multiGet(ids)
     data.forEach(pair => {if(pair[0] !== '@note-count')notes.push(JSON.parse(pair[1]))})
