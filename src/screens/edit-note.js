@@ -12,8 +12,7 @@ function SaveButton({onPress}) {
   return (
     <View style={{alignSelf:'flex-end', bottom:75, position:'absolute'}}>
       <TouchableOpacity style={{borderRadius:70, width:70, height:70, backgroundColor: COLORS.darkBrown, 
-        justifyContent:'center', alignItems:'center', elevation:5, shadowColor:'black', margin:20}} onPress={onPress}
-        >
+        justifyContent:'center', alignItems:'center', elevation:5, shadowColor:'black', margin:20}} onPress={onPress}>
         <Ionicons name='save-sharp' size={30} color='white'/>
       </TouchableOpacity>
     </View>
@@ -22,26 +21,21 @@ function SaveButton({onPress}) {
 
 export function EditNote({route, navigation}) {
   const {note} = route.params;
-  const [title, setTitle] = useState(note.title)
-  const [text, setText] = useState(note.bodyText)
   console.log(note.title);
   console.log(note.bodyText);
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: COLORS.yellow, justifyContent:'flex-start', alignItems:'flex-start'}]}>
       <FocusAwareStatusBar/>
       <TextInput 
-        onChangeText={value => setTitle(value)} 
-        value={title} style={styles.noteTitle} 
+        value={note.title} style={styles.noteTitle} 
         placeholder='Title ' placeholderTextColor='#c9d1a1'/>
       <TextInput 
-        onChangeText={value => setText(value)} 
-        value={text}  style={styles.noteBody} 
+        value={note.bodyText}  style={styles.noteBody} 
         placeholder='Text ' placeholderTextColor='#c9d1a1' 
         multiline={true} textAlignVertical='top' numberOfLines={10}/>
       <SaveButton 
         onPress={() => {
-          let createdNote = new Note(title, text, 'color-example');
-          StoreNewNote(createdNote); setTitle(''); setText('')}}/>
+          StoreNewNote(note);}}/>
     </SafeAreaView>
   );
 }

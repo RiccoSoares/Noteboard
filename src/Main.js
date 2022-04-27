@@ -15,9 +15,10 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {COLORS} from './styles/colors';
 import {styles} from './styles/stylesheets';
 
-import {Board} from './screens/board'
-import {EditNote} from './screens/edit-note'
-import {NoteList} from './screens/note-list'
+import {Board} from './screens/board';
+import {EditNote} from './screens/edit-note';
+import {NoteList} from './screens/note-list';
+import {Note} from './Note';
 
 //Screens and app drawing
 const Tab = createBottomTabNavigator();
@@ -56,7 +57,7 @@ function Screens() {
         }
         })}>
       <Tab.Screen name='Board' component={Board}/>
-      <Tab.Screen name='Edit Note' component={EditNote} />
+      <Tab.Screen name='Edit Note' component={EditNote} initialParams={{note: new Note('','','')}}/>
       <Tab.Screen name='Note List' component={NoteList} />
     </Tab.Navigator>
   );
