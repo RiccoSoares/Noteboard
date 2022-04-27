@@ -16,8 +16,18 @@ async function getNoteCount() {
 
 async function getNote(id) {
   try{
-    const note = await AsyncStorage.getItem('@note-' + id);
+    const note = await AsyncStorage.getItem('@note-' + JSON.stringify(id));
     return JSON.parse(note);
+  } catch (error) {
+    console.warn(error);
+  }
+}
+
+export async function getLastNote() {
+  try{
+    const count = await getNoteCount();
+    const note = await getNote(count);
+    return note;
   } catch (error) {
     console.warn(error);
   }
