@@ -32,7 +32,7 @@ export function NoteList({navigation}) {
           >
         <View style={{flexDirection: 'row', justifyContent:'space-between', margin:6, backgroundColor:COLORS.brown, borderRadius:15}}>
           <Text numberOfLines={1} style={[styles.noteText, {height:50, width:270}]}>
-            {item.title + ' - ' + item.bodyText }
+            {item.id + ' ' + item.title + ' - ' + item.bodyText }
           </Text>
           <View style={{flex:1, maxWidth:115, marginHorizontal:10, alignSelf:'center', flexDirection:'row', justifyContent:'space-between'}}>
             <Button style={{}} onPress={() => {}} title='Add'  color='#876759'/>

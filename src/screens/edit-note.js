@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {COLORS} from '../styles/colors.js';
 import {styles} from '../styles/stylesheets';
 import {FocusAwareStatusBar} from '../components/status-bar';
-import {StoreNewNote} from '../database/operations';
+import {StoreNote} from '../database/operations';
 import {Note} from '../Note';
 
 function SaveButton({onPress}) {
@@ -24,7 +24,7 @@ export function EditNote({route, navigation}) {
     navigation.setParams({note: new Note('','','')});
   });
   
-  const {note} = route.params;
+  const {note, noteId} = route.params;
   const [title, setTitle] = useState(note.title);
   const [text, setText] = useState(note.bodyText);
 
@@ -45,7 +45,7 @@ export function EditNote({route, navigation}) {
         onPress={() => {
           note.title = title;
           note.bodyText = text;
-          StoreNewNote(note);
+          StoreNote(note);
         }}/>
     </SafeAreaView>
   );

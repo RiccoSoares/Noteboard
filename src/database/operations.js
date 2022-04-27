@@ -2,13 +2,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //Persistent note storage functions
 
-async function getNoteCount() {
+async function UpdateNoteCount() {
   try {
-    const count = await AsyncStorage.getItem('@note-count');
-    if (isNaN(count))
-      return 0;
-    else 
-      return parseInt(count);
+    const count = parseInt(await AsyncStorage.getItem('@note-count'));
+    const newCount = isNaN(count) ? 1 : count + 1
+    await AsyncStorage.setItem('@note-count', JSON.stringify(newCount));
+    return newCount;
   } catch (error) {
     console.warn(error);
   }
@@ -33,11 +32,10 @@ export async function getLastNote() {
   }
 }
 
-export async function StoreNewNote(note) {
+export async function StoreNote(note) {
   try{
-    const count = await getNoteCount();
-    await AsyncStorage.setItem('@note-count', JSON.stringify(count + 1));
-    await AsyncStorage.setItem('@note-' + (count + 1), JSON.stringify(note));
+    note.id = (note.id == null) ? await UpdateNoteCount() : note.id;
+    await AsyncStorage.setItem('@note-' + (note.id), JSON.stringify(note));
   } catch (error) {
     console.warn(error);
   }

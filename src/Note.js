@@ -3,5 +3,6 @@ export class Note {
         this.title = title;
         this.bodyText = bodyText;
         this.color = color;
+        this.id = null;
     }
 }
