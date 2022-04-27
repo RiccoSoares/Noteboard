@@ -45,7 +45,9 @@ export function EditNote({route, navigation}) {
         onPress={() => {
           note.title = title;
           note.bodyText = text;
-          StoreNote(note);
+          StoreNote(note).then(()=> {
+            navigation.navigate('Note List', {});
+          });
         }}/>
     </SafeAreaView>
   );

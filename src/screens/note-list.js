@@ -1,5 +1,5 @@
 
-import React, {useState} from 'react';
+import React, {useState, useRef, useLayoutEffect} from 'react';
 import {SafeAreaView, FlatList, Text, View, Button, TouchableOpacity} from 'react-native';
 
 import {COLORS} from '../styles/colors';
@@ -10,16 +10,21 @@ import {NavigationContainer} from '@react-navigation/native';
 import {creatNativeStackNavigator} from '@react-navigation/native-stack';
 
 export function NoteList({navigation}) {
-  const [text, setText] = useState('')
+
   const [notes, setNotes] = useState([])
-  getAllNotes().then(notes => {setNotes(notes)})
+
+  const whenFocused = navigation.addListener('focus', () => {
+    getAllNotes().then(notes => {setNotes(notes)});
+  });
+
+
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: COLORS.darkYellow}]}>
       <FocusAwareStatusBar/>
       <FlatList
         style={{flex:1, maxWidth:700, width: '100%', marginVertical:6}}
         contentContainerStyle={{paddingBottom:100}}
-        data={notes.sort((a,b) => a.title > b.title)}
+        data={notes.sort((a,b) => a.id > b.id)}
         //for debug: {'title:' + item.title + ' body:' + item.bodyText + ' color:' + item.color}
         renderItem={({item}) => {return (
           <TouchableOpacity
