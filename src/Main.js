@@ -15,9 +15,10 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {COLORS} from './styles/colors';
 import {styles} from './styles/stylesheets';
 
-import {Board} from './screens/board'
-import {NewNote} from './screens/new-note'
-import {NoteList} from './screens/note-list'
+import {Board} from './screens/board';
+import {EditNote} from './screens/edit-note';
+import {NoteList} from './screens/note-list';
+import {Note} from './Note';
 
 //Screens and app drawing
 const Tab = createBottomTabNavigator();
@@ -47,7 +48,7 @@ function Screens() {
 
           if (route.name == 'Board')
             iconName = focused ? 'easel' : 'easel-outline'
-          else if (route.name == 'New Note') 
+          else if (route.name == 'Edit Note') 
             iconName = focused ? 'document-text' : 'document-text-outline'
           else if (route.name == 'Note List') 
             iconName = focused ? 'file-tray' : 'file-tray-outline'
@@ -56,7 +57,7 @@ function Screens() {
         }
         })}>
       <Tab.Screen name='Board' component={Board}/>
-      <Tab.Screen name='New Note' component={NewNote} />
+      <Tab.Screen name='Edit Note' component={EditNote} initialParams={{note: new Note('','','')}} options={{unmountOnBlur: true}}/>
       <Tab.Screen name='Note List' component={NoteList} />
     </Tab.Navigator>
   );
