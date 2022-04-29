@@ -16,7 +16,7 @@ export function Board() {
   return (
     <SafeAreaView style={[styles.container, {backgroundColor:COLORS.green}]}>
       <FocusAwareStatusBar/>
-      <NoteComponent note={note}/>
+
     </SafeAreaView>
   );
 }
