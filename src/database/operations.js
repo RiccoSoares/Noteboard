@@ -41,6 +41,15 @@ export async function StoreNote(note) {
   }
 }
 
+export async function RemoveNote(note){
+  try{
+    note.id = (note.id == null) ? await UpdateNoteCount() : note.id;
+    await AsyncStorage.removeItem('@note-' + (note.id));
+  } catch (error) {
+    console.warn(error);
+  }
+}
+
 export async function getAllNotes() {
   try{
     const notes = []

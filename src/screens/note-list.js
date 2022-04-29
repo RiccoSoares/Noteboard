@@ -6,6 +6,7 @@ import {COLORS} from '../styles/colors';
 import {styles} from '../styles/stylesheets';
 import {FocusAwareStatusBar} from '../components/status-bar';
 import {getAllNotes} from '../database/operations';
+import {RemoveNote} from '../database/operations';
 import {NavigationContainer} from '@react-navigation/native';
 import {creatNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -41,7 +42,9 @@ export function NoteList({navigation}) {
           </Text>
           <View style={{flex:1, maxWidth:115, marginHorizontal:10, alignSelf:'center', flexDirection:'row', justifyContent:'space-between'}}>
             <Button style={{}} onPress={() => {}} title='Add'  color='#876759'/>
-            <Button style={{}} onPress={() => {}} title='Delete' color='#876759'/>
+            <Button style={{}} onPress={() => {
+              RemoveNote(item)
+            }} title='Delete' color='#876759'/>
           </View>
         </View>
         </TouchableOpacity>
