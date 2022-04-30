@@ -44,6 +44,7 @@ export function NoteList({navigation}) {
             <Button style={{}} onPress={() => {}} title='Add'  color='#876759'/>
             <Button style={{}} onPress={() => {
               RemoveNote(item)
+              getAllNotes().then(notes => {setNotes(notes)});
             }} title='Delete' color='#876759'/>
           </View>
         </View>
