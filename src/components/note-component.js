@@ -31,9 +31,10 @@ export class NoteComponent extends Component {
         };
     }
     render() {
+        const {title=''} = this.props.note || {};
         return (
             <Animated.View style={[styles.note, this.state.position.getLayout()]} {...this.state.panResponder.panHandlers}>
-                <Text style={{color:COLORS.darkBrown, fontWeight:'400', margin:5}}>{this.props.note.title}</Text>
+                <Text style={{color:COLORS.darkBrown, fontWeight:'400', margin:5}}>{title}</Text>
             </Animated.View>
         );
     }

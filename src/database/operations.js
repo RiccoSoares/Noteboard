@@ -62,3 +62,19 @@ export async function getAllNotes() {
     console.warn(error);
   }
 }
+
+export async function getAllBoardNotes() {
+  try{
+    const notes = []
+    const ids = await AsyncStorage.getAllKeys()
+    const data = await AsyncStorage.multiGet(ids)
+    data.forEach(pair => {
+      if(pair[0] !== '@note-count' && JSON.parse(pair[1]).inBoard === true){
+        notes.push(JSON.parse(pair[1]));
+      }
+    });
+    return notes;
+  } catch (error) {
+    console.warn(error);
+  }
+}

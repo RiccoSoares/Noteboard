@@ -4,5 +4,6 @@ export class Note {
         this.bodyText = bodyText;
         this.color = color;
         this.id = null;
+        this.inBoard = false;
     }
 }

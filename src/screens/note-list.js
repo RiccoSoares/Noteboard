@@ -1,11 +1,11 @@
 
 import React, {useState, useRef, useLayoutEffect} from 'react';
-import {SafeAreaView, FlatList, Text, View, Button, TouchableOpacity} from 'react-native';
+import {SafeAreaView, FlatList, Text, View, Button, TouchableOpacity, Switch} from 'react-native';
 
 import {COLORS} from '../styles/colors';
 import {styles} from '../styles/stylesheets';
 import {FocusAwareStatusBar} from '../components/status-bar';
-import {getAllNotes} from '../database/operations';
+import {getAllNotes, StoreNote} from '../database/operations';
 import {RemoveNote} from '../database/operations';
 import {NavigationContainer} from '@react-navigation/native';
 import {creatNativeStackNavigator} from '@react-navigation/native-stack';
@@ -41,7 +41,15 @@ export function NoteList({navigation}) {
             {item.id + ' ' + item.title + ' - ' + item.bodyText }
           </Text>
           <View style={{flex:1, maxWidth:115, marginHorizontal:10, alignSelf:'center', flexDirection:'row', justifyContent:'space-between'}}>
-            <Button style={{}} onPress={() => {}} title='Add'  color='#876759'/>
+            {/*<Button style={{}} onPress={() => {}} title='Add'  color='#876759'/>*/}
+            <Switch trackColor={{false: COLORS.darkYellow, true: COLORS.green}} 
+              thumbColor={COLORS.darkBrown} 
+              onValueChange={(value)=>{
+                item.inBoard = value;
+                StoreNote(item);
+                getAllNotes().then(notes => {setNotes(notes)});
+              }}
+              value={item.inBoard}/>
             <Button style={{}} onPress={() => {
               RemoveNote(item)
               getAllNotes().then(notes => {setNotes(notes)});
