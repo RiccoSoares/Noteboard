@@ -9,6 +9,8 @@ In this first screen, the user has access to a pleasant interface to write regul
 
 ![image](https://user-images.githubusercontent.com/52585330/222854667-1c9be9a8-029c-42a8-b635-90d2a09a533f.png)
 
-It is offered an overview of the existing notes.
+It is offered an overview of the existing notes, where is possible to drag and drop.
 
 ![image](https://user-images.githubusercontent.com/52585330/222854669-6748e0af-f29a-48b8-aac8-6c8408ee943b.png)
+
+Alternatively, we can navigate through the notes in this list view.
