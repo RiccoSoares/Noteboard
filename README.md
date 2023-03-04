@@ -1,5 +1,7 @@
 # NoteBoard - Drag and Drop notes app made with React Native
 
+![image](https://user-images.githubusercontent.com/52585330/222861534-3562c803-eddb-4fcf-836e-53743af10155.png)
+
 The NoteBoard app comes as a creative solution to mix the benefits of mind map apps and casual note apps. The following images show an overview of the user experience.
 
 
